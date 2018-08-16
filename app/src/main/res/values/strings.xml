@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Счастливый Заказ</string>
+
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Регистрация</string>
+
+    <string name="preview_info">Учавствуй в ежедневной акции не отрываясь от работы!
+        Стань счастливчиком, который возьмет счастливый заказ и получи свой приз!</string>
+    <string name="preview_sign_up">Стать участником</string>
+
+    <string name="login_tel">№ телефона</string>
+    <string name="login_password">Пароль</string>
+
+</resources>
