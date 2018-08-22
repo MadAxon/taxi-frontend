@@ -4,5 +4,9 @@
         <attr name="hint" format="string"/>
         <attr name="title" format="string"/>
         <attr name="text" format="string"/>
+        <attr name="inputType" format="integer"/>
+        <attr name="isShown" format="boolean"/>
+        <attr name="maxLength" format="integer"/>
+        <attr name="editable" format="boolean"/>
     </declare-styleable>
 </resources>

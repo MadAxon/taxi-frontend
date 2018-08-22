@@ -9,15 +9,17 @@ import android.support.annotation.IntDef;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
+import taxi.flashka.me.R;
 import taxi.flashka.me.view.model.ViewModel;
 
 public abstract class BaseActivity<VM extends ViewModel, B extends ViewDataBinding>
         extends AppCompatActivity {
 
-    private VM viewModel;
+    protected VM viewModel;
 
-    private B dataBinding;
+    protected B dataBinding;
 
     public abstract VM onCreateViewModel();
 
@@ -57,5 +59,13 @@ public abstract class BaseActivity<VM extends ViewModel, B extends ViewDataBindi
     protected void onDestroy() {
         super.onDestroy();
         viewModel.onDestroy();
+    }
+
+    protected void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 }

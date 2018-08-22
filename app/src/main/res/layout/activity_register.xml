@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="taxi.flashka.me.view.model.RegisterViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".activity.RegisterActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar"
+            tools:context=".activity.RegisterActivity"
+            tools:showIn="@layout/activity_register">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <taxi.flashka.me.view.EditView
+                    android:id="@+id/editView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toTopOf="@+id/editView5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:title="@string/login_tel"
+                    app:text="@={viewModel.tel}"
+                    app:inputType="@{viewModel.inputType}"/>
+
+                <taxi.flashka.me.view.EditView
+                    android:id="@+id/editView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toTopOf="@+id/editView7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editView6"
+                    app:title="@string/register_last_name"
+                    app:text="@={viewModel.lastName}"/>
+
+                <taxi.flashka.me.view.EditView
+                    android:id="@+id/editView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toTopOf="@+id/editView8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editView5"
+                    app:title="@string/register_first_name"
+                    app:text="@={viewModel.firstName}"/>
+
+                <taxi.flashka.me.view.EditView
+                    android:id="@+id/editView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toTopOf="@+id/editView9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editView7"
+                    app:title="@string/register_patronymic"
+                    app:text="@={viewModel.patronymic}"/>
+
+                <taxi.flashka.me.view.EditView
+                    android:id="@+id/editView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:editable="@{viewModel.editable}"
+                    android:onClick="@{() -> viewModel.onClickedBirthDate(context)}"
+                    app:layout_constraintBottom_toTopOf="@+id/editView10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editView8"
+                    app:title="@string/register_birth_date"
+                    app:text="@{viewModel.birthDate}"/>
+
+                <taxi.flashka.me.view.EditView
+                    android:id="@+id/editView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toTopOf="@+id/editView11"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editView9"
+                    app:title="@string/register_city"
+                    app:text="@={viewModel.city}"/>
+
+                <taxi.flashka.me.view.EditView
+                    android:id="@+id/editView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toTopOf="@+id/button4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editView10"
+                    app:title="@string/register_car_number"
+                    app:text="@={viewModel.carNumber}"
+                    app:maxLength="@{viewModel.carNumberLength}"/>
+
+                <taxi.flashka.me.view.EditView
+                    android:id="@+id/editView12"
+                    android:layout_width="136dp"
+                    android:layout_height="match_parent"
+                    app:inputType="@{viewModel.inputType}"
+                    app:layout_constraintBottom_toBottomOf="@+id/editView11"
+                    app:layout_constraintEnd_toEndOf="@+id/editView11"
+                    app:layout_constraintTop_toBottomOf="@+id/editView10"
+                    app:maxLength="@{viewModel.regionCodeLength}"
+                    app:text="@={viewModel.regionCode}"
+                    app:title="@string/register_car_region">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginRight="32dp"
+                        android:text="@string/register_car_country"
+                        android:textColor="@android:color/black"
+                        app:fontFamily="@font/roboto_medium"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </taxi.flashka.me.view.EditView>
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/register_continue"
+                    android:onClick="@{() -> viewModel.onClickedOffer(context)}"
+                    app:layout_constraintBottom_toTopOf="@+id/textView5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editView11" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="1dp"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
+                    android:background="@color/editTextHintColor"
+                    app:layout_constraintBottom_toBottomOf="@+id/editView12"
+                    app:layout_constraintStart_toStartOf="@+id/editView12"
+                    app:layout_constraintTop_toTopOf="@+id/editView12"
+                    app:layout_constraintVertical_bias="0.97" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/register_condition"
+                    android:textAlignment="center"
+                    android:onClick="@{() -> viewModel.onClickedContinue(context)}"
+                    app:layout_constraintBottom_toTopOf="@+id/textView6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/register_condition_offer"
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{() -> viewModel.onClickedContinue(context)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

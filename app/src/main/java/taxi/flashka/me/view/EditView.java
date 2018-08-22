@@ -3,8 +3,12 @@ package taxi.flashka.me.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.databinding.InverseBindingAdapter;
+import android.databinding.InverseBindingMethod;
+import android.databinding.InverseBindingMethods;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.text.InputFilter;
+import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +25,10 @@ public class EditView extends ConstraintLayout {
 
     @Nullable
     private String title, hint, text;
+
+    private int inputType, maxLength;
+
+    private boolean isShown;
 
     public EditView(Context context) {
         super(context);
@@ -65,5 +73,52 @@ public class EditView extends ConstraintLayout {
 
     public void setText(@Nullable String text) {
         this.text = text;
+        editText.setText(text);
+    }
+
+    public EditText getEditText() {
+        return editText;
+    }
+
+    public int getInputType() {
+        return inputType;
+    }
+
+    public void setInputType(int inputType) {
+        this.inputType = inputType;
+        editText.setInputType(inputType);
+    }
+
+    @Override
+    public boolean isShown() {
+        return isShown;
+    }
+
+    public void setIsShown(boolean shown) {
+        isShown = shown;
+        int selectionEnd = editText.getSelectionEnd();
+        if (!isShown) editText.setTransformationMethod(new PasswordTransformationMethod());
+        else editText.setTransformationMethod(null);
+        editText.setSelection(selectionEnd);
+    }
+
+    public int getMaxLength() {
+        return maxLength;
+    }
+
+    public void setMaxLength(int maxLength) {
+        this.maxLength = maxLength;
+        editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+    }
+
+    public void setEditable(boolean editable) {
+        editText.setFocusable(editable);
+        editText.setClickable(!editable);
+        editText.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditView.this.performClick();
+            }
+        });
     }
 }

@@ -11,4 +11,42 @@
     <string name="login_tel">№ телефона</string>
     <string name="login_password">Пароль</string>
 
+    <string name="register_first_name">Имя</string>
+    <string name="register_last_name">Фамилия</string>
+    <string name="register_patronymic">Отчество</string>
+    <string name="register_birth_date">Дата рождения</string>
+    <string name="register_city">Город, где Вы работаете</string>
+    <string name="register_car_number">№ рабочего автомобиля</string>
+    <string name="register_car_region">Регион</string>
+    <string name="register_car_country" translatable="false">RUS</string>
+    <string name="register_continue">Продолжить</string>
+    <string name="register_condition">Регистрируясь, подтверждаю согласие с</string>
+    <string name="register_condition_offer">офертой</string>
+
+    <string name="deal_contacts">Контакты</string>
+    <string name="deal_condition">Условия акции</string>
+    <string name="deal_offers">Акции</string>
+    <string name="deal_offer">Акция</string>
+    <string name="deal_winners">Победители</string>
+    <string name="deal_history">История операций</string>
+    <string name="deal_profile">Профиль</string>
+    <string name="deal_payout">Вывести</string>
+    <string name="deal_present">приз</string>
+    <string name="deal_until">до счастливого заказа</string>
+    <string name="deal_participants">участников</string>
+    <string name="deal_cost">стоимость участия</string>
+    <string name="deal_button">Принять участие</string>
+    <string name="deal_next_offers">Начало следующих акций:</string>
+    <string name="deal_next_item">Акция №%d начнется %s в %s</string>
+    <string name="deal_city">Город</string>
+    <string name="navigation_drawer_open">Открыть меню</string>
+    <string name="navigation_drawer_close">Закрыть меню</string>
+    <string name="nav_group_title">Дополнительно</string>
+
+    <string name="payment">Оплата</string>
+    <string name="payment_card">Оплатить картой</string>
+    <string name="payment_wallet">Оплатить с баланса</string>
+
+    <string name="action_settings">Settings</string>
+
 </resources>

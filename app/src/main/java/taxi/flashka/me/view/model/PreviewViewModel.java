@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import taxi.flashka.me.activity.LoginActivity;
+import taxi.flashka.me.activity.RegisterActivity;
 
 public class PreviewViewModel extends ViewModel {
 
@@ -12,7 +13,7 @@ public class PreviewViewModel extends ViewModel {
     }
 
     public void onClickedRegister(Context context) {
-
+        context.startActivity(new Intent(context, RegisterActivity.class));
     }
 
     public void onClickedInfo(Context context) {
