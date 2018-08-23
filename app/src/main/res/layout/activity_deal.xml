@@ -19,7 +19,8 @@
         <include
             layout="@layout/app_bar_deal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:viewModel="@{viewModel}"/>
 
         <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"
@@ -27,6 +28,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
+            app:itemTextColor="@android:color/white"
             app:headerLayout="@layout/nav_header_deal"
             app:menu="@menu/activity_deal_drawer" />
 

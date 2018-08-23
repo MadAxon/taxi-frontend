@@ -4,48 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
-            type="taxi.flashka.me.view.model.RegisterViewModel" />
+            type="taxi.flashka.me.view.model.ProfileViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".activity.RegisterActivity">
+        tools:context=".activity.ProfileActivity">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/app_bar_height"
             android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar"
-            tools:context=".activity.RegisterActivity"
-            tools:showIn="@layout/activity_register">
+            tools:context=".activity.ProfileActivity"
+            tools:showIn="@layout/activity_profile">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -55,14 +47,14 @@
                     android:id="@+id/editView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:inputType="@{viewModel.inputType}"
                     app:layout_constraintBottom_toTopOf="@+id/editView5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:title="@string/login_tel"
                     app:text="@={viewModel.tel}"
-                    app:inputType="@{viewModel.inputType}"/>
+                    app:title="@string/login_tel" />
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView5"
@@ -73,8 +65,8 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView6"
-                    app:title="@string/register_last_name"
-                    app:text="@={viewModel.lastName}"/>
+                    app:text="@={viewModel.lastName}"
+                    app:title="@string/register_last_name" />
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView7"
@@ -85,8 +77,8 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView5"
-                    app:title="@string/register_first_name"
-                    app:text="@={viewModel.firstName}"/>
+                    app:text="@={viewModel.firstName}"
+                    app:title="@string/register_first_name" />
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView8"
@@ -97,22 +89,22 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView7"
-                    app:title="@string/register_patronymic"
-                    app:text="@={viewModel.patronymic}"/>
+                    app:text="@={viewModel.patronymic}"
+                    app:title="@string/register_patronymic" />
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:editable="@{viewModel.editable}"
                     android:onClick="@{() -> viewModel.onClickedBirthDate(context)}"
+                    app:editable="@{viewModel.editable}"
                     app:layout_constraintBottom_toTopOf="@+id/editView10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView8"
-                    app:title="@string/register_birth_date"
-                    app:text="@{viewModel.birthDate}"/>
+                    app:text="@{viewModel.birthDate}"
+                    app:title="@string/register_birth_date" />
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView10"
@@ -123,8 +115,8 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView9"
-                    app:title="@string/register_city"
-                    app:text="@={viewModel.city}"/>
+                    app:text="@={viewModel.city}"
+                    app:title="@string/register_city" />
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView11"
@@ -135,9 +127,9 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView10"
-                    app:title="@string/register_car_number"
+                    app:maxLength="@{viewModel.carNumberLength}"
                     app:text="@={viewModel.carNumber}"
-                    app:maxLength="@{viewModel.carNumberLength}"/>
+                    app:title="@string/register_car_number" />
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView12"
@@ -173,14 +165,25 @@
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/register_continue"
-                    android:onClick="@{() -> viewModel.onClickedContinue(context)}"
-                    app:layout_constraintBottom_toTopOf="@+id/textView5"
+                    android:layout_marginTop="40dp"
+                    android:onClick="@{() -> viewModel.onClickedSave(context)}"
+                    android:text="@string/profile_save"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView11" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginTop="8dp"
+                    android:onClick="@{() -> viewModel.onClickedPassword(context)}"
+                    android:text="@string/profile_password"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editView12" />
 
                 <View
                     android:id="@+id/view"
@@ -194,40 +197,10 @@
                     app:layout_constraintTop_toTopOf="@+id/editView12"
                     app:layout_constraintVertical_bias="0.97" />
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/register_condition"
-                    android:textAlignment="center"
-                    android:onClick="@{() -> viewModel.onClickedOffer(context)}"
-                    app:layout_constraintBottom_toTopOf="@+id/textView6"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button4" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/register_condition_offer"
-                    android:textColor="@color/colorAccent"
-                    android:onClick="@{() -> viewModel.onClickedContinue(context)}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
             </android.support.constraint.ConstraintLayout>
+
         </android.support.v4.widget.NestedScrollView>
 
-    </android.support.constraint.ConstraintLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
 </layout>
