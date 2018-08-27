@@ -29,7 +29,7 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:itemTextColor="@android:color/white"
-            app:headerLayout="@layout/nav_header_deal"
+            app:bind="@{viewModel.isLoading}"
             app:menu="@menu/activity_deal_drawer" />
 
     </android.support.v4.widget.DrawerLayout>

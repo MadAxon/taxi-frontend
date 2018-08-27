@@ -1,16 +1,15 @@
 package taxi.flashka.me.activity;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import taxi.flashka.me.BR;
@@ -23,7 +22,7 @@ public class DealActivity extends BaseActivity<DealViewModel, ActivityDealBindin
 
     @Override
     public DealViewModel onCreateViewModel() {
-        return new DealViewModel();
+        return ViewModelProviders.of(this).get(DealViewModel.class);
     }
 
     @Override
@@ -50,6 +49,13 @@ public class DealActivity extends BaseActivity<DealViewModel, ActivityDealBindin
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        viewModel.getApplyEvent().observe(this, new Observer<Void>() {
+            @Override
+            public void onChanged(@Nullable Void aVoid) {
+
+            }
+        });
     }
 
     @Override
@@ -67,6 +73,31 @@ public class DealActivity extends BaseActivity<DealViewModel, ActivityDealBindin
     public boolean onNavigationItemSelected(MenuItem item) {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return viewModel.onNavigationItemSelected(this, item.getItemId());
+
+        Intent intent = null;
+        switch (item.getItemId()) {
+            case R.id.nav_offers:
+
+                break;
+            case R.id.nav_winners:
+                intent = new Intent(this, WinnerActivity.class);
+                break;
+            case R.id.nav_history:
+                intent = new Intent(this, HistoryActivity.class);
+                break;
+            case R.id.nav_profile:
+                intent = new Intent(this, ProfileActivity.class);
+                break;
+            case R.id.nav_payout:
+
+                break;
+            case R.id.nav_condition:
+
+                break;
+            case R.id.nav_contacts:
+                intent = new Intent(this, ContactsActivity.class);
+        }
+        startActivity(intent);
+        return true;
     }
 }

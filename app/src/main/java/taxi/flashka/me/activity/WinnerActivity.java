@@ -9,24 +9,24 @@ import java.util.List;
 
 import taxi.flashka.me.BR;
 import taxi.flashka.me.R;
-import taxi.flashka.me.adapter.HistoryAdapter;
-import taxi.flashka.me.databinding.ActivityHistoryBinding;
-import taxi.flashka.me.model.HistoryModel;
+import taxi.flashka.me.adapter.WinnerAdapter;
+import taxi.flashka.me.databinding.ActivityWinnerBinding;
+import taxi.flashka.me.model.WinnerModel;
 import taxi.flashka.me.view.ItemDecoration;
-import taxi.flashka.me.view.model.HistoryViewModel;
+import taxi.flashka.me.view.model.WinnerViewModel;
 
-public class HistoryActivity extends BaseActivity<HistoryViewModel, ActivityHistoryBinding> {
+public class WinnerActivity extends BaseActivity<WinnerViewModel, ActivityWinnerBinding> {
 
-    private HistoryAdapter adapter;
+    private WinnerAdapter adapter;
 
     @Override
-    public HistoryViewModel onCreateViewModel() {
-        return ViewModelProviders.of(this).get(HistoryViewModel.class);
+    public WinnerViewModel onCreateViewModel() {
+        return ViewModelProviders.of(this).get(WinnerViewModel.class);
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_history;
+        return R.layout.activity_winner;
     }
 
     @Override
@@ -39,15 +39,14 @@ public class HistoryActivity extends BaseActivity<HistoryViewModel, ActivityHist
         super.onCreate(savedInstanceState);
         setupToolbar();
 
-        adapter = new HistoryAdapter();
+        adapter = new WinnerAdapter();
         dataBinding.recyclerView.setAdapter(adapter);
         dataBinding.recyclerView.addItemDecoration(new ItemDecoration(this));
-        viewModel.getItems().observe(this, new Observer<List<HistoryModel>>() {
+
+        viewModel.getItems().observe(this, new Observer<List<WinnerModel>>() {
             @Override
-            public void onChanged(@Nullable List<HistoryModel> items) {
-                if (items != null) {
-                    adapter.updateAdapter(items);
-                }
+            public void onChanged(@Nullable List<WinnerModel> items) {
+                adapter.updateAdapter(items);
             }
         });
     }

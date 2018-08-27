@@ -1,15 +1,25 @@
 package taxi.flashka.me.view.model;
 
-import android.content.Context;
+import taxi.flashka.me.view.SingleLiveEvent;
 
 public class PaymentViewModel extends ViewModel {
 
-    public void onClickedCard(Context context) {
+    private SingleLiveEvent<Void> cardEvent = new SingleLiveEvent<>()
+            , walletEvent = new SingleLiveEvent<>();
 
+    public void onClickedCard() {
+        cardEvent.call();
     }
 
-    public void onClickedWallet(Context context) {
-
+    public void onClickedWallet() {
+        walletEvent.call();
     }
 
+    public SingleLiveEvent<Void> getCardEvent() {
+        return cardEvent;
+    }
+
+    public SingleLiveEvent<Void> getWalletEvent() {
+        return walletEvent;
+    }
 }

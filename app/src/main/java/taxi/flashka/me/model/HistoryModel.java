@@ -1,6 +1,9 @@
 package taxi.flashka.me.model;
 
-public class HistoryModel {
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+public class HistoryModel extends BaseObservable {
 
     private int id;
 
@@ -14,6 +17,7 @@ public class HistoryModel {
         this.amount = amount;
     }
 
+    @Bindable
     public int getId() {
         return id;
     }
@@ -22,6 +26,7 @@ public class HistoryModel {
         this.id = id;
     }
 
+    @Bindable
     public String getDate() {
         return date;
     }
@@ -30,6 +35,7 @@ public class HistoryModel {
         this.date = date;
     }
 
+    @Bindable
     public String getAmount() {
         return amount;
     }

@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.PreviewActivity">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,27 +26,24 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".activity.LoginActivity" />
         <activity
             android:name=".activity.RegisterActivity"
-            android:label="@string/sign_up"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/sign_up" />
         <activity
             android:name=".activity.ContactsActivity"
-            android:label="@string/deal_contacts"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/deal_contacts" />
         <activity android:name=".activity.PaymentActivity" />
-        <activity
-            android:name=".activity.DealActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.DealActivity" />
         <activity
             android:name=".activity.ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/deal_profile" />
         <activity
             android:name=".activity.HistoryActivity"
-            android:label="@string/title_activity_history"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/deal_history" />
+        <activity
+            android:name=".activity.WinnerActivity"
+            android:label="@string/deal_winners" />
+        <activity android:name=".activity.WebActivity"/>
     </application>
 
 </manifest>

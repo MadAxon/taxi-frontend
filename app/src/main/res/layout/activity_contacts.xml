@@ -15,6 +15,27 @@
         android:layout_height="match_parent"
         tools:context=".activity.ContactsActivity">
 
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
@@ -36,6 +57,7 @@
             android:drawablePadding="16dp"
             android:drawableStart="@drawable/ic_message"
             android:onClick="@{() -> viewModel.onClickedMessage()}"
+            android:text="+7 (919) 623-86-44"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/textView9"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +74,7 @@
             android:drawablePadding="16dp"
             android:drawableStart="@drawable/ic_mail"
             android:onClick="@{() -> viewModel.onClickedEmail()}"
+            android:text="info@happy-order.ru"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +91,7 @@
             android:drawablePadding="16dp"
             android:drawableStart="@drawable/ic_phone"
             android:onClick="@{() -> viewModel.onClickedPhone()}"
+            android:text="+7 (800) 200-71-30"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -12,10 +12,12 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".activity.DealActivity">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBar"
+            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -24,7 +26,7 @@
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="180dp"
                 android:background="@color/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -55,6 +57,7 @@
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="@string/deal_present"
                         app:layout_constraintBottom_toTopOf="@+id/textView12"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +85,6 @@
                         android:id="@+id/textView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:text="@string/deal_until"
                         app:layout_constraintBottom_toTopOf="@+id/textView15"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +113,7 @@
         <include layout="@layout/content_deal"
             app:viewModel="@{viewModel}"/>
 
-        <FrameLayout
+       <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

@@ -1,13 +1,11 @@
 package taxi.flashka.me.view.model;
 
-import android.content.Context;
 import android.databinding.ObservableField;
 import android.text.InputType;
 
-import taxi.flashka.me.interfaces.IDateSetListener;
-import taxi.flashka.me.view.DatePickerDialog;
+import taxi.flashka.me.view.SingleLiveEvent;
 
-public class RegisterViewModel extends ViewModel implements IDateSetListener {
+public class RegisterViewModel extends ViewModel {
 
     public ObservableField<String>
             tel = new ObservableField<>("")
@@ -27,20 +25,31 @@ public class RegisterViewModel extends ViewModel implements IDateSetListener {
 
     public ObservableField<Boolean> editable = new ObservableField<>(false);
 
-    public void onClickedOffer(Context context) {
+    private SingleLiveEvent<Void> birthDateEvent = new SingleLiveEvent<>()
+            , continueEvent = new SingleLiveEvent<>()
+            , offerEvent = new SingleLiveEvent<>();
 
+    public void onClickedOffer() {
+        offerEvent.call();
     }
 
-    public void onClickedContinue(Context context) {
-
+    public void onClickedContinue() {
+        continueEvent.call();
     }
 
-    public void onClickedBirthDate(Context context) {
-        new DatePickerDialog(context, this);
+    public void onClickedBirthDate() {
+        birthDateEvent.call();
     }
 
-    @Override
-    public void onDateSet(String date) {
-        birthDate.set(date);
+    public SingleLiveEvent<Void> getBirthDateEvent() {
+        return birthDateEvent;
+    }
+
+    public SingleLiveEvent<Void> getContinueEvent() {
+        return continueEvent;
+    }
+
+    public SingleLiveEvent<Void> getOfferEvent() {
+        return offerEvent;
     }
 }

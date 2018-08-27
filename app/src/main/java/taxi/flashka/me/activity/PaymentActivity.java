@@ -1,7 +1,9 @@
 package taxi.flashka.me.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.android.databinding.library.baseAdapters.BR;
 
@@ -13,7 +15,7 @@ public class PaymentActivity extends BaseActivity<PaymentViewModel, ActivityPaym
 
     @Override
     public PaymentViewModel onCreateViewModel() {
-        return new PaymentViewModel();
+        return ViewModelProviders.of(this).get(PaymentViewModel.class);
     }
 
     @Override
@@ -30,5 +32,18 @@ public class PaymentActivity extends BaseActivity<PaymentViewModel, ActivityPaym
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupToolbar();
+
+        viewModel.getCardEvent().observe(this, new Observer<Void>() {
+            @Override
+            public void onChanged(@Nullable Void aVoid) {
+
+            }
+        });
+        viewModel.getWalletEvent().observe(this, new Observer<Void>() {
+            @Override
+            public void onChanged(@Nullable Void aVoid) {
+
+            }
+        });
     }
 }

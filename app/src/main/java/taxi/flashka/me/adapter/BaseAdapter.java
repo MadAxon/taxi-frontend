@@ -1,6 +1,5 @@
 package taxi.flashka.me.adapter;
 
-import android.arch.lifecycle.ViewModel;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.IdRes;
@@ -17,7 +16,7 @@ import taxi.flashka.me.view.model.ItemViewModel;
 
 public abstract class BaseAdapter<VM extends ItemViewModel<M>, M> extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
 
-    private final ArrayList<M> models;
+    private final ArrayList<M> items;
 
     public abstract @LayoutRes int getLayoutId();
 
@@ -25,46 +24,46 @@ public abstract class BaseAdapter<VM extends ItemViewModel<M>, M> extends Recycl
 
     public abstract VM onCreateViewModel();
 
-    public BaseAdapter(ArrayList<M> models) {
-        this.models = models;
+    public BaseAdapter() {
+        items = new ArrayList<>();
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BaseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         ViewDataBinding viewDataBinding = DataBindingUtil.inflate(layoutInflater, getLayoutId()
                 , parent, false);
-        return new ViewHolder(viewDataBinding);
+        return new BaseAdapter.ViewHolder(viewDataBinding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        M item = models.get(position);
+    public void onBindViewHolder(@NonNull BaseAdapter.ViewHolder holder, int position) {
+        M item = items.get(position);
         holder.bind(item);
     }
 
     @Override
-    public void onViewDetachedFromWindow(@NonNull ViewHolder holder) {
+    public void onViewDetachedFromWindow(@NonNull BaseAdapter.ViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
         holder.unbind();
     }
 
     @Override
     public int getItemCount() {
-        return models.size();
+        return items.size();
     }
 
-    public void updateAdapter(List<M> models) {
-        if (models != null && models.size() != 0) {
-            int positionStart = this.models.size();
-            this.models.addAll(models);
-            notifyItemRangeInserted(positionStart, models.size());
+    public void updateAdapter(List<M> items) {
+        if (items != null && items.size() != 0) {
+            int positionStart = this.items.size();
+            this.items.addAll(items);
+            notifyItemRangeInserted(positionStart, items.size());
         }
     }
 
     public void clearAdapter() {
-        models.clear();
+        items.clear();
         notifyDataSetChanged();
     }
 
@@ -80,13 +79,13 @@ public abstract class BaseAdapter<VM extends ItemViewModel<M>, M> extends Recycl
             viewModel = onCreateViewModel();
         }
 
-        public void bind(M model) {
+        private void bind(M model) {
             viewModel.setItem(model);
             viewDataBinding.setVariable(getVariable(), viewModel);
             viewDataBinding.executePendingBindings();
         }
 
-        public void unbind() {
+        private void unbind() {
             if (viewDataBinding != null) viewDataBinding.unbind();
         }
 

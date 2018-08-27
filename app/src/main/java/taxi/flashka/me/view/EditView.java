@@ -2,9 +2,6 @@ package taxi.flashka.me.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.databinding.InverseBindingAdapter;
-import android.databinding.InverseBindingMethod;
-import android.databinding.InverseBindingMethods;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.text.InputFilter;

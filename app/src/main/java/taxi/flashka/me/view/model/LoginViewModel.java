@@ -1,13 +1,9 @@
 package taxi.flashka.me.view.model;
 
-import android.content.Context;
-import android.content.Intent;
 import android.databinding.ObservableField;
 import android.text.InputType;
-import android.util.Log;
 
-import taxi.flashka.me.activity.DealActivity;
-import taxi.flashka.me.activity.RegisterActivity;
+import taxi.flashka.me.view.SingleLiveEvent;
 
 public class LoginViewModel extends ViewModel {
 
@@ -19,19 +15,39 @@ public class LoginViewModel extends ViewModel {
             , inputTypePassword = new ObservableField<>(InputType.TYPE_CLASS_TEXT
                 | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-    public ObservableField<Boolean> isShown = new ObservableField<>(false);
+    public ObservableField<Boolean> isPasswordShowed = new ObservableField<>(false)
+            , isPreviewShowed = new ObservableField<>(true);
 
-    public void onSignInClicked(Context context) {
-        Log.i("my_logs", telephone.get());
-        Log.i("my_logs", password.get());
-        context.startActivity(new Intent(context, DealActivity.class));
+    private SingleLiveEvent<Void> registerEvent = new SingleLiveEvent<>()
+            , infoEvent = new SingleLiveEvent<>()
+            , signInEvent = new SingleLiveEvent<>();
+
+    public void onClickedSignIn() {
+        if (isPreviewShowed.get()) isPreviewShowed.set(!isPreviewShowed.get());
+        else signInEvent.call();
     }
 
-    public void onClickedRegister(Context context) {
-        context.startActivity(new Intent(context, RegisterActivity.class));
+    public void onClickedRegister() {
+        registerEvent.call();
     }
 
     public void onClickedEye() {
-        isShown.set(!isShown.get());
+        isPasswordShowed.set(!isPasswordShowed.get());
+    }
+
+    public void onClickedInfo() {
+        infoEvent.call();
+    }
+
+    public SingleLiveEvent<Void> getRegisterEvent() {
+        return registerEvent;
+    }
+
+    public SingleLiveEvent<Void> getInfoEvent() {
+        return infoEvent;
+    }
+
+    public SingleLiveEvent<Void> getSignInEvent() {
+        return signInEvent;
     }
 }

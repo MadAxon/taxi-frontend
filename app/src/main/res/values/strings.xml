@@ -57,6 +57,13 @@
     <string name="history_date">Дата и время</string>
     <string name="history_status">Статус</string>
 
+    <string name="winner_present">Приз</string>
+    <string name="winner_name">Имя участника</string>
+    <string name="winner_offer_number">№ акции</string>
+    <string name="winner_date">Дата и время заказа</string>
+    <string name="winner_address">Адрес заказа</string>
+    <string name="winner_deduction">Итог акции</string>
+
     <string name="action_settings">Settings</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="large_text">
@@ -149,5 +156,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_history">HistoryActivity</string>
+    <string name="title_activity_winner">WinnerActivity</string>
 
 </resources>

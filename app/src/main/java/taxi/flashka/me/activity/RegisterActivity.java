@@ -1,23 +1,23 @@
 package taxi.flashka.me.activity;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import taxi.flashka.me.BR;
 import taxi.flashka.me.R;
 import taxi.flashka.me.databinding.ActivityRegisterBinding;
+import taxi.flashka.me.interfaces.IDateSetListener;
+import taxi.flashka.me.view.DatePickerDialog;
 import taxi.flashka.me.view.model.RegisterViewModel;
 
-public class RegisterActivity extends BaseActivity<RegisterViewModel, ActivityRegisterBinding> {
+public class RegisterActivity extends BaseActivity<RegisterViewModel, ActivityRegisterBinding>
+        implements IDateSetListener {
 
     @Override
     public RegisterViewModel onCreateViewModel() {
-        return new RegisterViewModel();
+        return ViewModelProviders.of(this).get(RegisterViewModel.class);
     }
 
     @Override
@@ -34,5 +34,29 @@ public class RegisterActivity extends BaseActivity<RegisterViewModel, ActivityRe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupToolbar();
+
+        viewModel.getBirthDateEvent().observe(this, new Observer<Void>() {
+            @Override
+            public void onChanged(@Nullable Void aVoid) {
+                new DatePickerDialog(RegisterActivity.this, RegisterActivity.this);
+            }
+        });
+        viewModel.getContinueEvent().observe(this, new Observer<Void>() {
+            @Override
+            public void onChanged(@Nullable Void aVoid) {
+
+            }
+        });
+        viewModel.getOfferEvent().observe(this, new Observer<Void>() {
+            @Override
+            public void onChanged(@Nullable Void aVoid) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onDateSet(String date) {
+        viewModel.birthDate.set(date);
     }
 }
