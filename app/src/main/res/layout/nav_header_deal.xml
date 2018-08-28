@@ -8,12 +8,21 @@
         <variable
             name="isLoading"
             type="Boolean" />
+        <variable
+            name="name"
+            type="String"/>
+        <variable
+            name="carNumber"
+            type="String"/>
+        <variable
+            name="city"
+            type="String"/>
     </data>
 
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_header_height"
+        android:layout_height="wrap_content"
         android:background="@drawable/background_side_nav_bar"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -25,6 +34,8 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@{name}"
             android:textSize="18sp"
             app:fontFamily="@font/roboto_bold"
             app:layout_constraintBottom_toTopOf="@+id/textView11"
@@ -39,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/register_car_number"
+            android:visibility="@{isLoading ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/car_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -49,7 +61,7 @@
             android:id="@+id/car_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Х 377 ЕО | 116 RUS"
+            android:text="@{carNumber}"
             android:textSize="18sp"
             app:fontFamily="@font/roboto_bold"
             app:layout_constraintBottom_toTopOf="@+id/textView13"
@@ -64,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/deal_city"
+            android:visibility="@{isLoading ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -74,7 +87,7 @@
             android:id="@+id/city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Казань"
+            android:text="@{city}"
             android:textSize="18sp"
             app:fontFamily="@font/roboto_bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -84,7 +97,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <ProgressBar
-            android:id="@+id/progressBar3"
+            android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

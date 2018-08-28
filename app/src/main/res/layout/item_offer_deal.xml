@@ -7,7 +7,7 @@
 
         <variable
             name="offer"
-            type="taxi.flashka.me.model.DealOfferModel" />
+            type="taxi.flashka.me.repository.model.DealOfferModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

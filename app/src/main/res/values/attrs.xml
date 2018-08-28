@@ -9,4 +9,11 @@
         <attr name="maxLength" format="integer"/>
         <attr name="editable" format="boolean"/>
     </declare-styleable>
+    <declare-styleable name="NavigationView">
+        <attr name="isLoading" format="boolean"/>
+        <attr name="name" format="string"/>
+        <attr name="carNumber" format="string"/>
+        <attr name="city" format="string"/>
+        <attr name="amount" format="string"/>
+    </declare-styleable>
 </resources>

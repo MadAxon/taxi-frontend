@@ -22,14 +22,18 @@
             android:layout_height="match_parent"
             app:viewModel="@{viewModel}"/>
 
-        <android.support.design.widget.NavigationView
+        <taxi.flashka.me.view.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
+            app:isLoading="@{viewModel.isLoading}"
+            app:name="@{viewModel.name}"
+            app:carNumber="@{viewModel.carNumber}"
+            app:city="@{viewModel.city}"
+            app:amount="@{viewModel.amount}"
             app:itemTextColor="@android:color/white"
-            app:bind="@{viewModel.isLoading}"
             app:menu="@menu/activity_deal_drawer" />
 
     </android.support.v4.widget.DrawerLayout>

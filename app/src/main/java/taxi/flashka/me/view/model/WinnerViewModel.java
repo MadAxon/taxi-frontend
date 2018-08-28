@@ -5,7 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 import java.util.ArrayList;
 import java.util.List;
 
-import taxi.flashka.me.model.WinnerModel;
+import taxi.flashka.me.repository.model.WinnerModel;
 
 public class WinnerViewModel extends ViewModel {
 

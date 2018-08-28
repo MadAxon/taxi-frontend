@@ -2,7 +2,7 @@ package taxi.flashka.me.view.model;
 
 import android.databinding.ObservableField;
 
-import taxi.flashka.me.model.HistoryModel;
+import taxi.flashka.me.repository.model.HistoryModel;
 
 public class HistoryItemViewModel extends ItemViewModel<HistoryModel> {
 

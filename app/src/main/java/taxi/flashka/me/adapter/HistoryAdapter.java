@@ -2,7 +2,7 @@ package taxi.flashka.me.adapter;
 
 import taxi.flashka.me.BR;
 import taxi.flashka.me.R;
-import taxi.flashka.me.model.HistoryModel;
+import taxi.flashka.me.repository.model.HistoryModel;
 import taxi.flashka.me.view.model.HistoryItemViewModel;
 
 public class HistoryAdapter extends BaseAdapter<HistoryItemViewModel, HistoryModel> {

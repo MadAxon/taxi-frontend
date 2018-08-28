@@ -3,7 +3,7 @@ package taxi.flashka.me.adapter;
 import com.android.databinding.library.baseAdapters.BR;
 
 import taxi.flashka.me.R;
-import taxi.flashka.me.model.WinnerModel;
+import taxi.flashka.me.repository.model.WinnerModel;
 import taxi.flashka.me.view.model.WinnerItemViewModel;
 
 public class WinnerAdapter extends BaseAdapter<WinnerItemViewModel, WinnerModel> {

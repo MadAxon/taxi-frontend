@@ -11,7 +11,7 @@ import taxi.flashka.me.BR;
 import taxi.flashka.me.R;
 import taxi.flashka.me.adapter.WinnerAdapter;
 import taxi.flashka.me.databinding.ActivityWinnerBinding;
-import taxi.flashka.me.model.WinnerModel;
+import taxi.flashka.me.repository.model.WinnerModel;
 import taxi.flashka.me.view.ItemDecoration;
 import taxi.flashka.me.view.model.WinnerViewModel;
 

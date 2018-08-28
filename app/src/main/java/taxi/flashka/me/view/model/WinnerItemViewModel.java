@@ -2,7 +2,7 @@ package taxi.flashka.me.view.model;
 
 import android.databinding.ObservableField;
 
-import taxi.flashka.me.model.WinnerModel;
+import taxi.flashka.me.repository.model.WinnerModel;
 
 public class WinnerItemViewModel extends ItemViewModel<WinnerModel> {
 

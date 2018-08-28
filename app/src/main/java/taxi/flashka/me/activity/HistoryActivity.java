@@ -11,7 +11,7 @@ import taxi.flashka.me.BR;
 import taxi.flashka.me.R;
 import taxi.flashka.me.adapter.HistoryAdapter;
 import taxi.flashka.me.databinding.ActivityHistoryBinding;
-import taxi.flashka.me.model.HistoryModel;
+import taxi.flashka.me.repository.model.HistoryModel;
 import taxi.flashka.me.view.ItemDecoration;
 import taxi.flashka.me.view.model.HistoryViewModel;
 

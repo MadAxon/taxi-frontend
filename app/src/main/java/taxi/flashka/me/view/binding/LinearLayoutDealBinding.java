@@ -11,7 +11,7 @@ import java.util.List;
 
 import taxi.flashka.me.BR;
 import taxi.flashka.me.R;
-import taxi.flashka.me.model.DealOfferModel;
+import taxi.flashka.me.repository.model.DealOfferModel;
 
 public class LinearLayoutDealBinding {
 

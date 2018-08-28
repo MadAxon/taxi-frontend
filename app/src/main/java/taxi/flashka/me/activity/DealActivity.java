@@ -41,14 +41,12 @@ public class DealActivity extends BaseActivity<DealViewModel, ActivityDealBindin
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+                this, dataBinding.drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        dataBinding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        dataBinding.navView.setNavigationItemSelectedListener(this);
 
         viewModel.getApplyEvent().observe(this, new Observer<Void>() {
             @Override
@@ -60,9 +58,8 @@ public class DealActivity extends BaseActivity<DealViewModel, ActivityDealBindin
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (dataBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            dataBinding.drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -71,8 +68,7 @@ public class DealActivity extends BaseActivity<DealViewModel, ActivityDealBindin
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        dataBinding.drawerLayout.closeDrawer(GravityCompat.START);
 
         Intent intent = null;
         switch (item.getItemId()) {
