@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="text" format="string"/>
     <declare-styleable name="EditView">
         <attr name="hint" format="string"/>
         <attr name="title" format="string"/>
-        <attr name="text" format="string"/>
+        <attr name="text"/>
         <attr name="inputType" format="integer"/>
         <attr name="isShown" format="boolean"/>
         <attr name="maxLength" format="integer"/>
@@ -15,5 +16,8 @@
         <attr name="carNumber" format="string"/>
         <attr name="city" format="string"/>
         <attr name="amount" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="ProgressButton">
+        <attr name="text"/>
     </declare-styleable>
 </resources>

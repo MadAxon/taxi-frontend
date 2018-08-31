@@ -8,7 +8,6 @@ import com.bluelinelabs.logansquare.LoganSquare;
 import com.bluelinelabs.logansquare.ParameterizedType;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -18,30 +17,47 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import taxi.flashka.me.repository.request.BaseRequest;
+import taxi.flashka.me.repository.response.BaseResponse;
+import taxi.flashka.me.repository.response.ErrorResponse;
+import taxi.flashka.me.view.SingleLiveEvent;
 
-public abstract class OkhttpService<T> extends BaseService<T> {
+public abstract class OkhttpService<R extends BaseResponse<M>, M> {
 
     private OkHttpClient client = new OkHttpClient();
 
     private BaseRequest baseRequest;
 
+    protected abstract ParameterizedType<R> getParameterizedType();
+
     public OkhttpService(BaseRequest baseRequest) {
         this.baseRequest = baseRequest;
     }
 
-    @Override
-    public LiveData<T> getData() {
-        final MutableLiveData<T> liveData = new MutableLiveData<>();
+    public LiveData<M> getData(final SingleLiveEvent<ErrorResponse> statusLiveEvent
+            , final MutableLiveData<Boolean> isRunning) {
+        final MutableLiveData<M> liveData = new MutableLiveData<>();
 
+        isRunning.setValue(true);
         client.newCall(getRequest()).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
+                statusLiveEvent.setValue(new ErrorResponse(e.getLocalizedMessage(), 0));
+                isRunning.setValue(false);
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                liveData.setValue(LoganSquare.parse(response.body().string(), getParameterizedType()));
+                if (response.body() != null) {
+                    R res = LoganSquare.parse(response.body().string(), getParameterizedType());
+                    switch (res.getStatus()) {
+                        case 200:
+                            liveData.setValue(res.getData());
+                            break;
+                        default:
+                            statusLiveEvent.setValue(new ErrorResponse(res.getStatusText(), res.getStatus()));
+                    }
+                } else statusLiveEvent.setValue(new ErrorResponse(response.message(), 0));
+                isRunning.setValue(false);
             }
         });
         return liveData;

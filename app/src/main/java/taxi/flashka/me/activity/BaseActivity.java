@@ -1,16 +1,21 @@
 package taxi.flashka.me.activity;
 
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 
 import taxi.flashka.me.R;
+import taxi.flashka.me.repository.response.ErrorResponse;
 import taxi.flashka.me.view.model.ViewModel;
 
 public abstract class BaseActivity<VM extends ViewModel, B extends ViewDataBinding>
@@ -30,10 +35,21 @@ public abstract class BaseActivity<VM extends ViewModel, B extends ViewDataBindi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBinding = DataBindingUtil.setContentView(this, getLayoutId());
+        dataBinding.setLifecycleOwner(this);
         viewModel = onCreateViewModel();
         viewModel.onCreate();
         dataBinding.setVariable(getVariable(), viewModel);
         dataBinding.executePendingBindings();
+
+        findViewById(android.R.id.content).setBackgroundResource(R.drawable.bg);
+
+        viewModel.getStatusLiveEvent().observe(this, new Observer<ErrorResponse>() {
+            @Override
+            public void onChanged(@Nullable ErrorResponse errorResponse) {
+                if (errorResponse != null)
+                    Snackbar.make(dataBinding.getRoot(), errorResponse.getStatusText(), Snackbar.LENGTH_LONG);
+            }
+        });
     }
 
     @Override

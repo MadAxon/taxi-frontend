@@ -6,16 +6,21 @@ import com.bluelinelabs.logansquare.annotation.JsonObject;
 import java.util.List;
 
 @JsonObject
-public class ItemsResponse<T> {
+public class ItemsResponse<T> extends BaseResponse<T> {
 
     @JsonField
-    private List<T> items;
+    private T items;
 
-    public List<T> getItems() {
+    public T getItems() {
         return items;
     }
 
-    public void setItems(List<T> items) {
+    public void setItems(T items) {
         this.items = items;
+    }
+
+    @Override
+    public T getData() {
+        return items;
     }
 }

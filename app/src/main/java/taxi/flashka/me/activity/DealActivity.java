@@ -85,7 +85,7 @@ public class DealActivity extends BaseActivity<DealViewModel, ActivityDealBindin
                 intent = new Intent(this, ProfileActivity.class);
                 break;
             case R.id.nav_payout:
-
+                intent = new Intent(this, PaymentActivity.class);
                 break;
             case R.id.nav_condition:
 

@@ -41,6 +41,10 @@ public class ProfileViewModel extends ViewModel {
         birthDateEvent.call();
     }
 
+    public void changePassword() {
+
+    }
+
     public SingleLiveEvent<Void> getBirthDateEvent() {
         return birthDateEvent;
     }

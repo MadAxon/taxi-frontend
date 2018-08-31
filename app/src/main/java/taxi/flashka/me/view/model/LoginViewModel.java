@@ -22,6 +22,10 @@ public class LoginViewModel extends ViewModel {
             , infoEvent = new SingleLiveEvent<>()
             , signInEvent = new SingleLiveEvent<>();
 
+    public LoginViewModel() {
+        isLoading.setValue(false);
+    }
+
     public void onClickedSignIn() {
         if (isPreviewShowed.get()) isPreviewShowed.set(!isPreviewShowed.get());
         else signInEvent.call();
@@ -36,6 +40,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void onClickedInfo() {
+        isLoading.setValue(!isLoading.getValue());
         infoEvent.call();
     }
 

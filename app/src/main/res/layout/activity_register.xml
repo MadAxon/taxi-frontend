@@ -165,17 +165,13 @@
                         app:layout_constraintEnd_toEndOf="parent" />
                 </taxi.flashka.me.view.EditView>
 
-                <Button
+                <taxi.flashka.me.view.ProgressButton
                     android:id="@+id/button4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="24dp"
-                    android:text="@string/register_continue"
-                    android:onClick="@{() -> viewModel.onClickedContinue()}"
+                    app:text="@string/register_continue"
+                    app:onClick="@{() -> viewModel.onClickedContinue()}"
                     app:layout_constraintBottom_toTopOf="@+id/textView5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"

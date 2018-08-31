@@ -32,7 +32,9 @@
         <activity
             android:name=".activity.ContactsActivity"
             android:label="@string/deal_contacts" />
-        <activity android:name=".activity.PaymentActivity" />
+        <activity
+            android:name=".activity.PaymentActivity"
+            android:label="@string/payment"/>
         <activity android:name=".activity.DealActivity" />
         <activity
             android:name=".activity.ProfileActivity"
