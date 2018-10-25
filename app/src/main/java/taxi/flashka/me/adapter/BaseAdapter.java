@@ -2,7 +2,6 @@ package taxi.flashka.me.adapter;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,17 +11,16 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import taxi.flashka.me.view.model.ItemViewModel;
+import taxi.flashka.me.adapter.viewholder.BaseViewHolder;
 
-public abstract class BaseAdapter<VM extends ItemViewModel<M>, M> extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
+public abstract class BaseAdapter<M, VH extends BaseViewHolder, VDB extends ViewDataBinding>
+        extends RecyclerView.Adapter<VH> {
 
     private final ArrayList<M> items;
 
     public abstract @LayoutRes int getLayoutId();
 
-    public abstract @IdRes int getVariable();
-
-    public abstract VM onCreateViewModel();
+    public abstract VH onCreateViewHolderBinding(VDB viewDataBinding);
 
     public BaseAdapter() {
         items = new ArrayList<>();
@@ -30,21 +28,21 @@ public abstract class BaseAdapter<VM extends ItemViewModel<M>, M> extends Recycl
 
     @NonNull
     @Override
-    public BaseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ViewDataBinding viewDataBinding = DataBindingUtil.inflate(layoutInflater, getLayoutId()
+        VDB viewDataBinding = DataBindingUtil.inflate(layoutInflater, getLayoutId()
                 , parent, false);
-        return new BaseAdapter.ViewHolder(viewDataBinding);
+        return onCreateViewHolderBinding(viewDataBinding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BaseAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VH holder, int position) {
         M item = items.get(position);
         holder.bind(item);
     }
 
     @Override
-    public void onViewDetachedFromWindow(@NonNull BaseAdapter.ViewHolder holder) {
+    public void onViewDetachedFromWindow(@NonNull VH holder) {
         super.onViewDetachedFromWindow(holder);
         holder.unbind();
     }
@@ -67,27 +65,4 @@ public abstract class BaseAdapter<VM extends ItemViewModel<M>, M> extends Recycl
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        private final ViewDataBinding viewDataBinding;
-
-        private final VM viewModel;
-
-        public ViewHolder(ViewDataBinding viewDataBinding) {
-            super(viewDataBinding.getRoot());
-            this.viewDataBinding = viewDataBinding;
-            viewModel = onCreateViewModel();
-        }
-
-        private void bind(M model) {
-            viewModel.setItem(model);
-            viewDataBinding.setVariable(getVariable(), viewModel);
-            viewDataBinding.executePendingBindings();
-        }
-
-        private void unbind() {
-            if (viewDataBinding != null) viewDataBinding.unbind();
-        }
-
-    }
 }

@@ -26,6 +26,10 @@
             android:id="@+id/nav_payout"
             android:icon="@drawable/ic_wallet"
             android:title="@string/deal_payout"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@android:drawable/ic_menu_revert"
+            android:title="@string/deal_logout"/>
     </group>
 
     <item android:title="@string/nav_group_title">

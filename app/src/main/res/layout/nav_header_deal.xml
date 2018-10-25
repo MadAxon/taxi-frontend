@@ -6,17 +6,11 @@
     <data>
         <import type="android.view.View"/>
         <variable
-            name="isLoading"
-            type="Boolean" />
+            name="isUserLoading"
+            type="Boolean"/>
         <variable
-            name="name"
-            type="String"/>
-        <variable
-            name="carNumber"
-            type="String"/>
-        <variable
-            name="city"
-            type="String"/>
+            name="userModel"
+            type="taxi.flashka.me.repository.model.UserModel"/>
     </data>
 
 
@@ -35,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@{name}"
+            android:text="@{userModel.fullName}"
             android:textSize="18sp"
             app:fontFamily="@font/roboto_bold"
             app:layout_constraintBottom_toTopOf="@+id/textView11"
@@ -50,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/register_car_number"
-            android:visibility="@{isLoading ? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{isUserLoading ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/car_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -61,7 +55,7 @@
             android:id="@+id/car_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{carNumber}"
+            android:text="@{userModel.carNumberParsed}"
             android:textSize="18sp"
             app:fontFamily="@font/roboto_bold"
             app:layout_constraintBottom_toTopOf="@+id/textView13"
@@ -76,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/deal_city"
-            android:visibility="@{isLoading ? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{isUserLoading ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -87,7 +81,7 @@
             android:id="@+id/city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{city}"
+            android:text="@{userModel.city.name}"
             android:textSize="18sp"
             app:fontFamily="@font/roboto_bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -101,7 +95,7 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+            android:visibility="@{isUserLoading ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

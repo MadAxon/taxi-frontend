@@ -3,13 +3,11 @@ package taxi.flashka.me.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import taxi.flashka.me.R;
 import taxi.flashka.me.databinding.ItemMenuDealBinding;
 import taxi.flashka.me.databinding.NavHeaderDealBinding;
+import taxi.flashka.me.repository.model.UserModel;
 
 public class NavigationView extends android.support.design.widget.NavigationView {
 
@@ -40,25 +38,14 @@ public class NavigationView extends android.support.design.widget.NavigationView
         menuItem.setActionView(itemBinding.getRoot());
     }
 
-    public void setIsLoading(boolean isLoading) {
-        binding.setIsLoading(isLoading);
-        itemBinding.setIsLoading(isLoading);
+    public void setIsUserLoading(boolean isUserLoading) {
+        binding.setIsUserLoading(isUserLoading);
+        itemBinding.setIsUserLoading(isUserLoading);
     }
 
-    public void setName(String name) {
-        binding.setName(name);
-    }
-
-    public void setCarNumber(String carNumber) {
-        binding.setCarNumber(carNumber);
-    }
-
-    public void setCity(String city) {
-        binding.setCity(city);
-    }
-
-    public void setAmount(String amount) {
-        itemBinding.setAmount(amount);
+    public void setUserModel(UserModel userModel) {
+        binding.setUserModel(userModel);
+        itemBinding.setUserModel(userModel);
     }
 
 }

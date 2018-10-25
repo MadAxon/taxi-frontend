@@ -3,24 +3,21 @@ package taxi.flashka.me.repository.response;
 import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
 
-import java.util.List;
-
 @JsonObject
 public class ItemResponse<T> extends BaseResponse<T> {
 
     @JsonField
-    private T item;
+    private T result;
 
     public T getItem() {
-        return item;
+        return result;
     }
 
-    public void setItem(T item) {
-        this.item = item;
+    public T getResult() {
+        return result;
     }
 
-    @Override
-    public T getData() {
-        return item;
+    public void setResult(T result) {
+        this.result = result;
     }
 }

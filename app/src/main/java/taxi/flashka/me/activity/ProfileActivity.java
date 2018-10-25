@@ -3,26 +3,27 @@ package taxi.flashka.me.activity;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.text.InputType;
-import android.util.Log;
-import android.view.LayoutInflater;
 
-import java.util.Calendar;
+import com.bluelinelabs.logansquare.LoganSquare;
+
+import java.io.IOException;
 
 import taxi.flashka.me.BR;
 import taxi.flashka.me.R;
 import taxi.flashka.me.databinding.ActivityProfileBinding;
-import taxi.flashka.me.databinding.DialogPasswordChangingBinding;
 import taxi.flashka.me.interfaces.IDateSetListener;
+import taxi.flashka.me.repository.model.UserModel;
+import taxi.flashka.me.repository.response.StatusResponse;
 import taxi.flashka.me.view.DatePickerDialog;
 import taxi.flashka.me.view.model.ProfileViewModel;
 
 public class ProfileActivity extends BaseActivity<ProfileViewModel, ActivityProfileBinding>
         implements IDateSetListener {
+
+    public static final String PROFILE = "PROFILE";
 
     @Override
     public ProfileViewModel onCreateViewModel() {
@@ -44,6 +45,12 @@ public class ProfileActivity extends BaseActivity<ProfileViewModel, ActivityProf
         super.onCreate(savedInstanceState);
         setupToolbar();
 
+        try {
+            viewModel.initUserModel(LoganSquare.parse(getIntent().getStringExtra(PROFILE), UserModel.class));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         viewModel.getBirthDateEvent().observe(this, new Observer<Void>() {
             @Override
             public void onChanged(@Nullable Void aVoid) {
@@ -53,35 +60,38 @@ public class ProfileActivity extends BaseActivity<ProfileViewModel, ActivityProf
         viewModel.getPasswordEvent().observe(this, new Observer<Void>() {
             @Override
             public void onChanged(@Nullable Void aVoid) {
-                final DialogPasswordChangingBinding dialogBinding = DialogPasswordChangingBinding
-                        .inflate(LayoutInflater.from(ProfileActivity.this));
-                dialogBinding.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                new AlertDialog.Builder(ProfileActivity.this, R.style.AppTheme_Dialog)
-                        .setTitle(R.string.register_password_title)
-                        .setView(dialogBinding.getRoot())
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Log.i("my_logs", dialogBinding.getNewPassword()
-                                        + dialogBinding.getNewPasswordAgain()
-                                        + dialogBinding.getOldPassword());
-                                viewModel.changePassword();
-                            }
-                        })
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .show();
+                startActivity(new Intent(ProfileActivity.this, ProfilePasswordActivity.class));
             }
         });
-        viewModel.getSaveEvent().observe(this, new Observer<Void>() {
+        viewModel.getCityEvent().observe(this, new Observer<Void>() {
             @Override
             public void onChanged(@Nullable Void aVoid) {
-
+                startActivityForResult(new Intent(ProfileActivity.this, CityActivity.class)
+                        , CityActivity.REQUEST_CITY);
+            }
+        });
+        viewModel.getFinishEvent().observe(this, new Observer<Void>() {
+            @Override
+            public void onChanged(@Nullable Void aVoid) {
+                finish();
             }
         });
     }
 
     @Override
     public void onDateSet(String date) {
-        viewModel.birthDate.set(date);
+        viewModel.onDateSet(date);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        viewModel.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onChanged(@Nullable StatusResponse statusResponse) {
+        super.onChanged(statusResponse);
+        if (statusResponse != null && statusResponse.getStatus() == 200)
+            showSuccessSnackbar(statusResponse.getMessage());
     }
 }

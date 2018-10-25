@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import taxi.flashka.me.R;
 import taxi.flashka.me.interfaces.IDateSetListener;
 
 public class DatePickerDialog implements android.app.DatePickerDialog.OnDateSetListener {
@@ -17,10 +18,12 @@ public class DatePickerDialog implements android.app.DatePickerDialog.OnDateSetL
 
     public DatePickerDialog(Context context, IDateSetListener dateSetListener) {
         this.dateSetListener = dateSetListener;
-        new android.app.DatePickerDialog( context, this
+        android.app.DatePickerDialog datePickerDialog = new android.app.DatePickerDialog( context,
+                R.style.AppTheme_DatePickerDialog,this
                 , calendar.get(Calendar.YEAR)
                 , calendar.get(Calendar.MONTH)
-                , calendar.get(Calendar.DAY_OF_MONTH)).show();
+                , calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
     }
 
     @Override

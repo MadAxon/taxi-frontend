@@ -2,6 +2,7 @@ package taxi.flashka.me.activity;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -9,9 +10,12 @@ import com.android.databinding.library.baseAdapters.BR;
 
 import taxi.flashka.me.R;
 import taxi.flashka.me.databinding.ActivityPaymentBinding;
+import taxi.flashka.me.repository.response.StatusResponse;
 import taxi.flashka.me.view.model.PaymentViewModel;
 
 public class PaymentActivity extends BaseActivity<PaymentViewModel, ActivityPaymentBinding> {
+
+    public static final String OFFER_ID = "OFFER_ID";
 
     @Override
     public PaymentViewModel onCreateViewModel() {
@@ -32,18 +36,25 @@ public class PaymentActivity extends BaseActivity<PaymentViewModel, ActivityPaym
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupToolbar();
+        viewModel.setOfferId(getIntent().getLongExtra(OFFER_ID, 0));
 
-        viewModel.getCardEvent().observe(this, new Observer<Void>() {
+        viewModel.getUrl().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(@Nullable Void aVoid) {
-
+            public void onChanged(@Nullable String url) {
+                if (url != null) {
+                    Intent intent = new Intent(PaymentActivity.this, WebActivity.class);
+                    intent.putExtra(WebActivity.TITLE, getString(R.string.payment));
+                    intent.putExtra(WebActivity.URL, url);
+                    startActivity(intent);
+                }
             }
         });
-        viewModel.getWalletEvent().observe(this, new Observer<Void>() {
-            @Override
-            public void onChanged(@Nullable Void aVoid) {
+    }
 
-            }
-        });
+    @Override
+    public void onChanged(@Nullable StatusResponse statusResponse) {
+        super.onChanged(statusResponse);
+        if (statusResponse != null && !statusResponse.getMessage().isEmpty())
+            showSuccessSnackbar(statusResponse.getMessage());
     }
 }

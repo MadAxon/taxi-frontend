@@ -2,12 +2,17 @@ package taxi.flashka.me.repository.request;
 
 public class BaseRequest<T> {
 
-    private String baseUrl, requestUrl;
+    private final String baseUrl = "http://18.224.86.0:8080/taxi/";
+
+    private String requestUrl;
 
     private T body;
 
-    public BaseRequest(String baseUrl, String requestUrl, T body) {
-        this.baseUrl = baseUrl;
+    public BaseRequest(String requestUrl) {
+        this.requestUrl = requestUrl;
+    }
+
+    public BaseRequest(String requestUrl, T body) {
         this.requestUrl = requestUrl;
         this.body = body;
     }
@@ -18,10 +23,6 @@ public class BaseRequest<T> {
 
     public String getBaseUrl() {
         return baseUrl;
-    }
-
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
     }
 
     public String getRequestUrl() {

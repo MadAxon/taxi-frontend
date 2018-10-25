@@ -1,13 +1,14 @@
 <resources>
-    <string name="app_name">Счастливый Заказ</string>
+    <string name="app_name">Счастливый Номер</string>
     <string name="app_name_start">Счастливый</string>
-    <string name="app_name_end">Заказ</string>
+    <string name="app_name_end">Номер</string>
 
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>
+    <string name="send">Отправить</string>
 
     <string name="preview_info">Учавствуй в ежедневной акции не отрываясь от работы!
-        Стань счастливчиком, который возьмет счастливый заказ и получи свой приз!</string>
+        Стань счастливчиком, который возьмет счастливый номер и получит свой приз!</string>
     <string name="preview_sign_up">Стать участником</string>
 
     <string name="login_tel">№ телефона</string>
@@ -37,13 +38,16 @@
     <string name="deal_history">История операций</string>
     <string name="deal_profile">Профиль</string>
     <string name="deal_payout">Вывести</string>
+    <string name="deal_logout">Выйти</string>
     <string name="deal_present">приз</string>
-    <string name="deal_until">до счастливого заказа</string>
+    <string name="deal_until">до счастливого номера</string>
     <string name="deal_participants">участников</string>
     <string name="deal_cost">стоимость участия</string>
     <string name="deal_button">Принять участие</string>
+    <string name="deal_empty">Действующих акций нет!</string>
     <string name="deal_next_offers">Начало следующих акций:</string>
-    <string name="deal_next_item">Акция №%d начнется %s в %s</string>
+    <string name="deal_next_item">Акция №%s начнется %s</string>
+    <string name="deal_next_item_empty">Акции не объявлены</string>
     <string name="deal_city">Город</string>
     <string name="navigation_drawer_open">Открыть меню</string>
     <string name="navigation_drawer_close">Закрыть меню</string>
@@ -58,17 +62,45 @@
 
     <string name="history_amount">Сумма</string>
     <string name="history_provider">Провайдер</string>
-    <string name="history_id">Номер счета</string>
+    <string name="history_id">№ счета</string>
     <string name="history_commission">Комиссия</string>
     <string name="history_date">Дата и время</string>
     <string name="history_status">Статус</string>
+    <string name="history_check">№ чека</string>
+    <string name="history_type">Тип</string>
 
     <string name="winner_present">Приз</string>
     <string name="winner_name">Имя участника</string>
     <string name="winner_offer_number">№ акции</string>
-    <string name="winner_date">Дата и время заказа</string>
+    <string name="winner_date">Дата окончания акции</string>
     <string name="winner_address">Адрес заказа</string>
     <string name="winner_deduction">Итог акции</string>
+    <string name="winner_status_exist">Приз выплачен победителю</string>
+    <string name="winner_status_pending">Приз выплачен победителю</string>
+    <string name="winner_status_doesnt_exist">Приз выплачен победителю</string>
+    <string name="transaction_status_success">Успешно</string>
+    <string name="transaction_status_pending">Обработка…</string>
+    <string name="transaction_status_cancelled">Отменено</string>
+    <string name="transaction_status_failed">Ошибка!</string>
+    <string name="transaction_type_purchase">Покупка участия в акции</string>
+    <string name="transaction_type_payout">Вывод средств</string>
+    <string name="transaction_type_winner">Зачисление призовых средств</string>
+
+    <string name="hint_phone">79876543210</string>
+    <string name="hint_first_name">Иван</string>
+    <string name="hint_last_name">Иванов</string>
+    <string name="hint_patronymic">Иванович</string>
+    <string name="hint_birth_date">19.19.1999</string>
+    <string name="hint_city">Москва</string>
+    <string name="hint_car_number">а123бв</string>
+    <string name="hint_car_region_code">55</string>
+
+    <string name="message_registration_successful">Регистрация прошла успешно.\nВаш пароль: %s</string>
+
+    <string name="error_connection">Отсутсвует подключение к интернету</string>
+    <string name="error_server">Сервер не отвечает</string>
+
+    <string name="list_empty">Список пуст</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_profile">ProfileActivity</string>

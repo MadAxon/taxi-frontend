@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#045684</color>
     <color name="colorPrimaryDark">#045684</color>
     <color name="colorAccent">#ff6f10</color>
@@ -8,4 +8,9 @@
 
     <color name="editTextHintColor">#a9b3b8</color>
     <color name="editTextColor">#333333</color>
+    
+    <color name="snackbarErrorBackgroundColor">#B71C1C</color>
+    <color name="snackbarSuccessBackgroundColor">#43A047</color>
+    
+    <color name="secondaryTextColor">#E3F2FD</color>
 </resources>

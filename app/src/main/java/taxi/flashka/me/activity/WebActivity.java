@@ -14,7 +14,7 @@ public class WebActivity extends BaseActivity<WebViewModel, ActivityWebBinding> 
 
     @Override
     public WebViewModel onCreateViewModel() {
-        return new WebViewModel(getIntent().getStringExtra(URL));
+        return new WebViewModel(getApplication(), getIntent().getStringExtra(URL));
     }
 
     @Override

@@ -1,23 +1,46 @@
 package taxi.flashka.me.view.model;
 
+import android.app.Application;
 import android.arch.lifecycle.MutableLiveData;
+import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
+import com.bluelinelabs.logansquare.ParameterizedType;
+
 import java.util.List;
 
 import taxi.flashka.me.repository.model.HistoryModel;
+import taxi.flashka.me.repository.request.BaseRequest;
+import taxi.flashka.me.repository.response.ItemsResponse;
+import taxi.flashka.me.repository.service.OkhttpService;
 
 public class HistoryViewModel extends ViewModel {
 
-    private final MutableLiveData<List<HistoryModel>> items;
+    private MutableLiveData<List<HistoryModel>> items = new MutableLiveData<>();
 
-    public HistoryViewModel() {
-        items = new MutableLiveData<>();
-        List<HistoryModel> list = new ArrayList<>();
-        list.add(new HistoryModel(12, "12.12.18", "100 P"));
-        list.add(new HistoryModel(15, "12.12.18", "320 P"));
-        list.add(new HistoryModel(19, "13.12.18", "50 P"));
-        items.setValue(list);
+    public MutableLiveData<Boolean> isRefreshing = new MutableLiveData<>();
+
+    public HistoryViewModel(@NonNull Application application) {
+        super(application);
+        isRefreshing.setValue(false);
+        getData();
+    }
+
+    private void getData() {
+        okhttpService = new OkhttpService<List<HistoryModel>>(token
+                , new BaseRequest("history/get_list")) {
+            @Override
+            protected ParameterizedType<ItemsResponse<HistoryModel>> getParameterizedType() {
+                return new ParameterizedType<ItemsResponse<HistoryModel>>() {};
+            }
+        };
+        if (isRefreshing.getValue()) okhttpService.sendRequest(statusLiveEvent, items, isLoading, isRefreshing);
+        else okhttpService.sendRequest(statusLiveEvent, items, isLoading);
+    }
+
+    public void onRefresh() {
+        isRefreshing.setValue(true);
+        if (items.getValue() != null) items.getValue().clear();
+        getData();
     }
 
     public MutableLiveData<List<HistoryModel>> getItems() {

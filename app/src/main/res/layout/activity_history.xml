@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="taxi.flashka.me.view.model.HistoryViewModel" />
@@ -37,24 +39,45 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_bar"
-            tools:context=".activity.HistoryActivity"
-            tools:showIn="@layout/activity_history" />
+            app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+            app:refreshing="@{viewModel.isRefreshing}">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                tools:context=".activity.HistoryActivity"
+                tools:showIn="@layout/activity_history" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
 
         <ProgressBar
             android:id="@+id/progressBar2"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/list_empty"
+            android:visibility="@{!viewModel.isLoading &amp;&amp; viewModel.items.size() == 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

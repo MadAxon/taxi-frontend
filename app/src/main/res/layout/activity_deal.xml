@@ -28,11 +28,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            app:isLoading="@{viewModel.isLoading}"
-            app:name="@{viewModel.name}"
-            app:carNumber="@{viewModel.carNumber}"
-            app:city="@{viewModel.city}"
-            app:amount="@{viewModel.amount}"
+            app:isUserLoading="@{viewModel.isUserLoading}"
+            app:userModel="@{viewModel.userModel}"
             app:itemTextColor="@android:color/white"
             app:menu="@menu/activity_deal_drawer" />
 

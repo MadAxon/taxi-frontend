@@ -32,10 +32,17 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewModel.getSignInEvent().observe(this, new Observer<Void>() {
+        viewModel.getToken().observe(LoginActivity.this, new Observer<String>() {
             @Override
-            public void onChanged(@Nullable Void aVoid) {
-                startActivity(new Intent(LoginActivity.this, DealActivity.class));
+            public void onChanged(@Nullable String s) {
+                if (s != null) {
+                    viewModel.setToken(s);
+                    Intent intent = new Intent(LoginActivity.this, DealActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            | Intent.FLAG_ACTIVITY_NEW_TASK
+                            | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -49,7 +56,10 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
         viewModel.getInfoEvent().observe(this, new Observer<Void>() {
             @Override
             public void onChanged(@Nullable Void aVoid) {
-
+                Intent intent = new Intent(LoginActivity.this, WebActivity.class);
+                intent.putExtra(WebActivity.TITLE, "");
+                intent.putExtra(WebActivity.URL, "");
+                startActivity(intent);
             }
         });
     }

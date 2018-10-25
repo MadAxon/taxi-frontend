@@ -35,22 +35,9 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBar5"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <android.support.v4.widget.NestedScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="@{viewModel.isLoading ? View.INVISIBLE : View.VISIBLE}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,14 +55,15 @@
                     android:id="@+id/editView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:editable="false"
                     app:inputType="@{viewModel.inputType}"
                     app:layout_constraintBottom_toTopOf="@+id/editView5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:text="@={viewModel.tel}"
-                    app:title="@string/login_tel" />
+                    app:text="@={viewModel.userModel.phoneNumber}"
+                    app:title="@string/login_tel"/>
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView5"
@@ -136,32 +124,36 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView9"
-                    app:text="@={viewModel.city}"
-                    app:title="@string/register_city" />
+                    app:text="@{viewModel.userModel.city.name}"
+                    app:title="@string/register_city"
+                    app:editable="@{viewModel.editable}"
+                    android:onClick="@{() -> viewModel.onClickedCity()}"/>
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:editable="false"
                     app:layout_constraintBottom_toTopOf="@+id/textView21"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView10"
                     app:maxLength="@{viewModel.carNumberLength}"
-                    app:text="@={viewModel.carNumber}"
+                    app:text="@={viewModel.userModel.carNumberCode}"
                     app:title="@string/register_car_number" />
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView12"
                     android:layout_width="136dp"
                     android:layout_height="wrap_content"
+                    app:editable="false"
                     app:inputType="@{viewModel.inputType}"
                     app:layout_constraintBottom_toBottomOf="@+id/editView11"
                     app:layout_constraintEnd_toEndOf="@+id/editView11"
                     app:layout_constraintTop_toBottomOf="@+id/editView10"
                     app:maxLength="@{viewModel.regionCodeLength}"
-                    app:text="@={viewModel.regionCode}"
+                    app:text="@={viewModel.userModel.carNumberRegion}"
                     app:title="@string/register_car_region">
 
                     <TextView
@@ -185,6 +177,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="24dp"
                     app:onClick="@{() -> viewModel.onClickedSave()}"
+                    app:visibility="@{viewModel.isLoading}"
                     app:text="@string/profile_save"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

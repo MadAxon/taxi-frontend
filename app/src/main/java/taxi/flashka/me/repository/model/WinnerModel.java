@@ -3,44 +3,33 @@ package taxi.flashka.me.repository.model;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
+import com.bluelinelabs.logansquare.annotation.JsonField;
+import com.bluelinelabs.logansquare.annotation.JsonObject;
+
+@JsonObject
 public class WinnerModel extends BaseObservable {
 
-    private String carNumber;
+    @JsonField
+    private OfferModel offer;
 
-    private int id;
+    @JsonField
+    private UserModel winner;
 
-    private String amount;
+    @Bindable
+    public OfferModel getOffer() {
+        return offer;
+    }
 
-    public WinnerModel(String carNumber, int id, String amount) {
-        this.carNumber = carNumber;
-        this.id = id;
-        this.amount = amount;
+    public void setOffer(OfferModel offer) {
+        this.offer = offer;
     }
 
     @Bindable
-    public String getCarNumber() {
-        return carNumber;
+    public UserModel getWinner() {
+        return winner;
     }
 
-    public void setCarNumber(String carNumber) {
-        this.carNumber = carNumber;
-    }
-
-    @Bindable
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Bindable
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
+    public void setWinner(UserModel winner) {
+        this.winner = winner;
     }
 }

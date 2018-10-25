@@ -4,30 +4,28 @@ import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
 
 @JsonObject
-public abstract class BaseResponse<T> {
+public class BaseResponse<M> {
 
     @JsonField
-    private String statusText;
+    private String message;
 
     @JsonField
     private int status;
 
-    public abstract T getData();
-
     public BaseResponse() {
     }
 
-    public BaseResponse(String statusText, int status) {
-        this.statusText = statusText;
+    public BaseResponse(String message, int status) {
+        this.message = message;
         this.status = status;
     }
 
-    public String getStatusText() {
-        return statusText;
+    public String getMessage() {
+        return message;
     }
 
-    public void setStatusText(String statusText) {
-        this.statusText = statusText;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public int getStatus() {
@@ -36,5 +34,9 @@ public abstract class BaseResponse<T> {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public M getResult() {
+        return null;
     }
 }

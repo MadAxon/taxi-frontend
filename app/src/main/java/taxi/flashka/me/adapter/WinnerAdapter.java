@@ -1,12 +1,12 @@
 package taxi.flashka.me.adapter;
 
-import com.android.databinding.library.baseAdapters.BR;
-
 import taxi.flashka.me.R;
+import taxi.flashka.me.adapter.viewholder.WinnerViewHolder;
+import taxi.flashka.me.databinding.ItemWinnerBinding;
 import taxi.flashka.me.repository.model.WinnerModel;
-import taxi.flashka.me.view.model.WinnerItemViewModel;
 
-public class WinnerAdapter extends BaseAdapter<WinnerItemViewModel, WinnerModel> {
+public class WinnerAdapter extends BaseAdapter<WinnerModel, WinnerViewHolder, ItemWinnerBinding> {
+
 
     @Override
     public int getLayoutId() {
@@ -14,12 +14,8 @@ public class WinnerAdapter extends BaseAdapter<WinnerItemViewModel, WinnerModel>
     }
 
     @Override
-    public int getVariable() {
-        return BR.viewModel;
-    }
-
-    @Override
-    public WinnerItemViewModel onCreateViewModel() {
-        return new WinnerItemViewModel();
+    public WinnerViewHolder onCreateViewHolderBinding(ItemWinnerBinding viewDataBinding) {
+        WinnerViewHolder winnerViewHolder = new WinnerViewHolder(viewDataBinding);
+        return winnerViewHolder;
     }
 }

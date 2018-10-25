@@ -7,14 +7,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.bluelinelabs.logansquare.LoganSquare;
+
+import java.io.IOException;
+import java.util.List;
+
 import taxi.flashka.me.BR;
 import taxi.flashka.me.R;
 import taxi.flashka.me.databinding.ActivityDealBinding;
+import taxi.flashka.me.repository.model.OfferModel;
+import taxi.flashka.me.repository.model.UserModel;
+import taxi.flashka.me.repository.response.StatusResponse;
 import taxi.flashka.me.view.model.DealViewModel;
 
 public class DealActivity extends BaseActivity<DealViewModel, ActivityDealBinding>
@@ -51,7 +58,23 @@ public class DealActivity extends BaseActivity<DealViewModel, ActivityDealBindin
         viewModel.getApplyEvent().observe(this, new Observer<Void>() {
             @Override
             public void onChanged(@Nullable Void aVoid) {
+                Intent intent = new Intent(DealActivity.this, PaymentActivity.class);
+                intent.putExtra(PaymentActivity.OFFER_ID, viewModel.offers.getValue().get(0).getId());
+                startActivity(intent);
+            }
+        });
 
+        viewModel.userModel.observe(this, new Observer<UserModel>() {
+            @Override
+            public void onChanged(@Nullable UserModel userModel) {
+                if (userModel != null) viewModel.requestOffers(userModel.getCity().getId());
+            }
+        });
+
+        viewModel.offers.observe(this, new Observer<List<OfferModel>>() {
+            @Override
+            public void onChanged(@Nullable List<OfferModel> offerModels) {
+                viewModel.runTimer();
             }
         });
     }
@@ -83,17 +106,36 @@ public class DealActivity extends BaseActivity<DealViewModel, ActivityDealBindin
                 break;
             case R.id.nav_profile:
                 intent = new Intent(this, ProfileActivity.class);
+                try {
+                    intent.putExtra(ProfileActivity.PROFILE, LoganSquare.serialize(viewModel.userModel.getValue()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.nav_payout:
-                intent = new Intent(this, PaymentActivity.class);
+
                 break;
             case R.id.nav_condition:
 
                 break;
             case R.id.nav_contacts:
                 intent = new Intent(this, ContactsActivity.class);
+                break;
+            case R.id.nav_logout:
+                viewModel.toNullToken();
+                intent = new Intent(this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         }
         startActivity(intent);
         return true;
+    }
+
+    @Override
+    public void onChanged(@Nullable StatusResponse statusResponse) {
+        super.onChanged(statusResponse);
+        if (statusResponse != null && statusResponse.getStatus() == 200 && !statusResponse.getMessage().isEmpty())
+            showSuccessSnackbar(statusResponse.getMessage());
     }
 }

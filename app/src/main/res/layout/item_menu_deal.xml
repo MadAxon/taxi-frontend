@@ -5,10 +5,10 @@
     <data>
         <import type="android.view.View"/>
         <variable
-            name="amount"
-            type="String"/>
+            name="userModel"
+            type="taxi.flashka.me.repository.model.UserModel"/>
         <variable
-            name="isLoading"
+            name="isUserLoading"
             type="Boolean"/>
     </data>
 
@@ -20,7 +20,7 @@
             android:id="@+id/textView35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{amount}"
+            android:text="@{userModel.balance}"
             android:textColor="@color/colorAccent"
             app:fontFamily="@font/roboto_bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +32,7 @@
             style="?android:attr/progressBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+            android:visibility="@{isUserLoading ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

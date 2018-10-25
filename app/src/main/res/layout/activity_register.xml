@@ -62,7 +62,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:title="@string/login_tel"
                     app:text="@={viewModel.tel}"
-                    app:inputType="@{viewModel.inputType}"/>
+                    app:inputType="@{viewModel.inputType}"
+                    app:hint="@string/hint_phone"/>
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView5"
@@ -74,7 +75,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView6"
                     app:title="@string/register_last_name"
-                    app:text="@={viewModel.lastName}"/>
+                    app:text="@={viewModel.lastName}"
+                    app:hint="@string/hint_last_name"/>
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView7"
@@ -86,7 +88,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView5"
                     app:title="@string/register_first_name"
-                    app:text="@={viewModel.firstName}"/>
+                    app:text="@={viewModel.firstName}"
+                    app:hint="@string/hint_first_name"/>
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView8"
@@ -98,7 +101,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView7"
                     app:title="@string/register_patronymic"
-                    app:text="@={viewModel.patronymic}"/>
+                    app:text="@={viewModel.patronymic}"
+                    app:hint="@string/hint_patronymic"/>
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView9"
@@ -112,7 +116,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView8"
                     app:title="@string/register_birth_date"
-                    app:text="@{viewModel.birthDate}"/>
+                    app:text="@{viewModel.birthDate}"
+                    app:hint="@string/hint_birth_date"/>
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView10"
@@ -124,7 +129,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editView9"
                     app:title="@string/register_city"
-                    app:text="@={viewModel.city}"/>
+                    app:text="@={viewModel.city.name}"
+                    app:editable="@{viewModel.editable}"
+                    android:onClick="@{() -> viewModel.onClickedCity()}"
+                    app:hint="@string/hint_city"/>
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView11"
@@ -137,7 +145,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/editView10"
                     app:title="@string/register_car_number"
                     app:text="@={viewModel.carNumber}"
-                    app:maxLength="@{viewModel.carNumberLength}"/>
+                    app:maxLength="@{viewModel.carNumberLength}"
+                    app:hint="@string/hint_car_number"/>
 
                 <taxi.flashka.me.view.EditView
                     android:id="@+id/editView12"
@@ -149,7 +158,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/editView10"
                     app:maxLength="@{viewModel.regionCodeLength}"
                     app:text="@={viewModel.regionCode}"
-                    app:title="@string/register_car_region">
+                    app:title="@string/register_car_region"
+                    app:hint="@string/hint_car_region_code">
 
                     <TextView
                         android:id="@+id/textView4"
@@ -171,6 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     app:text="@string/register_continue"
+                    app:visibility="@{viewModel.isLoading}"
                     app:onClick="@{() -> viewModel.onClickedContinue()}"
                     app:layout_constraintBottom_toTopOf="@+id/textView5"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -215,7 +226,7 @@
                     android:layout_marginBottom="16dp"
                     android:text="@string/register_condition_offer"
                     android:textColor="@color/colorAccent"
-                    android:onClick="@{() -> viewModel.onClickedContinue()}"
+                    android:onClick="@{() -> viewModel.onClickedOffer()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
